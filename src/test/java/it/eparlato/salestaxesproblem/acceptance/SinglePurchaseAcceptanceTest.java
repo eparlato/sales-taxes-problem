@@ -8,8 +8,8 @@ import static junit.framework.TestCase.assertEquals;
 
 public class SinglePurchaseAcceptanceTest {
     @Test
-    public void should_return_an_empty_receipt_if_the_input_is_empty() {
-        String input = "";
+    public void should_return_an_empty_receipt_whatever_the_input_is() {
+        String input = "whatever";
 
         String expected =
                 "Sales Taxes: 0.00\n" +

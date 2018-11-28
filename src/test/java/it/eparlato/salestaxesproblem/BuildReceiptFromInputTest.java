@@ -1,7 +1,6 @@
 package it.eparlato.salestaxesproblem;
 
 import org.junit.Test;
-import sun.security.util.SignatureFileVerifier;
 
 import static junit.framework.TestCase.assertNotNull;
 

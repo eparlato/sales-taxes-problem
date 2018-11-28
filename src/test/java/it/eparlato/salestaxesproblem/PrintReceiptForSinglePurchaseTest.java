@@ -2,8 +2,6 @@ package it.eparlato.salestaxesproblem;
 
 import org.junit.Test;
 
-import java.awt.print.PrinterJob;
-
 import static junit.framework.TestCase.assertEquals;
 
 public class PrintReceiptForSinglePurchaseTest {
