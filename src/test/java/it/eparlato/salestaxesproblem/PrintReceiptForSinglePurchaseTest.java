@@ -2,6 +2,8 @@ package it.eparlato.salestaxesproblem;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class PrintReceiptForSinglePurchaseTest {
@@ -12,6 +14,21 @@ public class PrintReceiptForSinglePurchaseTest {
                 "Total: 0.00";
 
         Receipt receipt = new Receipt();
+
+        assertEquals(expected, receipt.print());
+    }
+
+    @Test
+    public void receipt_for_one_unit_of_a_tax_free_product() {
+        String expected =
+                "1 book: 7.80\n" +
+                "Sales Taxes: 0.00\n" +
+                "Total: 7.80";
+
+
+        Receipt receipt = new Receipt();
+
+        receipt.add(new Purchase(1, "book", new BigDecimal(7.80)));
 
         assertEquals(expected, receipt.print());
     }
