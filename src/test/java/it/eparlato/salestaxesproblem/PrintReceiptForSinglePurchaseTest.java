@@ -15,7 +15,7 @@ public class PrintReceiptForSinglePurchaseTest {
 
         Receipt receipt = new Receipt();
 
-        assertEquals(expected, receipt.print());
+        assertEquals(expected, receipt.buildAndReturn());
     }
 
     @Test
@@ -30,6 +30,6 @@ public class PrintReceiptForSinglePurchaseTest {
 
         receipt.add(new Purchase(1, "book", new BigDecimal(7.80)));
 
-        assertEquals(expected, receipt.print());
+        assertEquals(expected, receipt.buildAndReturn());
     }
 }

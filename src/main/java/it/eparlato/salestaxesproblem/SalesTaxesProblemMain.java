@@ -6,6 +6,6 @@ public class SalesTaxesProblemMain {
 
         Receipt receipt = cashRegister.process("");
 
-        System.out.println(receipt.print());
+        System.out.println(receipt.buildAndReturn());
     }
 }

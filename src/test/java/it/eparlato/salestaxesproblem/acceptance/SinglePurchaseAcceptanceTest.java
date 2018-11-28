@@ -19,6 +19,6 @@ public class SinglePurchaseAcceptanceTest {
 
         Receipt receipt = cashRegister.process(input);
 
-        assertEquals(expected, receipt.print());
+        assertEquals(expected, receipt.buildAndReturn());
     }
 }
