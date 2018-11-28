@@ -6,7 +6,7 @@ import java.awt.print.PrinterJob;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class BuildReceiptForSinglePurchaseTest {
+public class PrintReceiptForSinglePurchaseTest {
     @Test
     public void empty_receipt_if_no_purchases_are_provided() {
         String expected =
