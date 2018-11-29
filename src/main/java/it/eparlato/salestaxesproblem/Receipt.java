@@ -33,7 +33,7 @@ public class Receipt {
     }
 
     private void buildPurchaseRow() {
-        if (purchase != null) {
+        if (purchase != null && !purchase.isEmpty()) {
             result.append(String.format("%d %s: %.2f\n", purchase.getQuantity(), purchase.getProductName(), purchase.getPrice().doubleValue()));
         }
     }

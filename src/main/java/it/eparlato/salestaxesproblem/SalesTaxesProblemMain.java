@@ -2,7 +2,7 @@ package it.eparlato.salestaxesproblem;
 
 public class SalesTaxesProblemMain {
     public static void main(String[] args) {
-        CashRegister cashRegister = new CashRegister();
+        CashRegister cashRegister = new CashRegister(new PurchaseBuilder());
 
         Receipt receipt = cashRegister.process("");
 

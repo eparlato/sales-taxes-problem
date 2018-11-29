@@ -47,4 +47,8 @@ public class Purchase {
 
         return true;
     }
+
+    public boolean isEmpty() {
+        return quantity == 0;
+    }
 }
