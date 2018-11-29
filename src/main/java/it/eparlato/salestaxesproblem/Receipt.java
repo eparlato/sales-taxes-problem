@@ -26,7 +26,7 @@ public class Receipt {
 
     private void buildTotalRow() {
         if (purchase != null) {
-            result.append(String.format("Total: %.2f", purchase.getPrice().doubleValue()));
+            result.append(String.format("Total: %.2f", purchase.getTotal().doubleValue()));
         } else {
             result.append("Total: 0.00");
         }
@@ -34,7 +34,7 @@ public class Receipt {
 
     private void buildPurchaseRow() {
         if (purchase != null && !purchase.isEmpty()) {
-            result.append(String.format("%d %s: %.2f\n", purchase.getQuantity(), purchase.getProductName(), purchase.getPrice().doubleValue()));
+            result.append(String.format("%d %s: %.2f\n", purchase.getQuantity(), purchase.getProductName(), purchase.getTotal().doubleValue()));
         }
     }
 

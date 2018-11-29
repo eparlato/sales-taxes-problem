@@ -48,4 +48,20 @@ public class SinglePurchaseAcceptanceTest {
 
         assertEquals(expected, output);
     }
+
+    @Test
+    public void should_return_a_receipt_for_a_few_units_of_a_tax_free_product() {
+        input =
+                "3 books at 15.20\n";
+
+        expected =
+                "3 books: 45.60\n" +
+                "Sales Taxes: 0.00\n" +
+                "Total: 45.60"
+                ;
+
+        output = cashRegister.process(input);
+
+        assertEquals(expected, output);
+    }
 }

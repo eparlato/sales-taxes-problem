@@ -21,7 +21,7 @@ public class Purchase {
         return productName;
     }
 
-    public BigDecimal getPrice() {
+    public BigDecimal getTotal() {
         return price.multiply(new BigDecimal(quantity));
     }
 
