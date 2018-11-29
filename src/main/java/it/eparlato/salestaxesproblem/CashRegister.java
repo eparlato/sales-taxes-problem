@@ -7,7 +7,7 @@ public class CashRegister {
         this.purchaseBuilder = purchaseBuilder;
     }
 
-    public Receipt process(String input) {
+    public String process(String input) {
 
         Purchase purchase = purchaseBuilder.buildFromInput(input);
 
@@ -15,6 +15,6 @@ public class CashRegister {
 
         receipt.add(purchase);
 
-        return receipt;
+        return receipt.buildAndReturn();
     }
 }
