@@ -15,7 +15,7 @@ public class PurchaseBuilder {
         String productName = "";
         BigDecimal price = new BigDecimal(0);
 
-        if (matcher.matches()) {
+        if (matcher.find()) {
             quantity = Integer.valueOf(matcher.group(1));
             productName = matcher.group(2);
             price = new BigDecimal(Double.valueOf(matcher.group(3)));

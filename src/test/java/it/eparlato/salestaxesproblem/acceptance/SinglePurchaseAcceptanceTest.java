@@ -27,14 +27,13 @@ public class SinglePurchaseAcceptanceTest {
     }
 
     @Test
-    @Ignore
     public void should_return_a_receipt_for_one_unit_of_a_tax_free_product() {
         String input =
                 "1 box of headache pills at 34.40\n";
 
         String expected =
                 "1 box of headache pills: 34.40\n" +
-                "Sales Taxes: 0.0\n" +
+                "Sales Taxes: 0.00\n" +
                 "Total: 34.40";
 
         CashRegister cashRegister = new CashRegister(purchaseBuilder);
