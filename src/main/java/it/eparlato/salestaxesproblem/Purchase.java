@@ -22,7 +22,7 @@ public class Purchase {
     }
 
     public BigDecimal getPrice() {
-        return price;
+        return price.multiply(new BigDecimal(quantity));
     }
 
     @Override

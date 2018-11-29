@@ -47,4 +47,16 @@ public class PrintReceiptForSinglePurchaseTest {
 
         assertEquals(expected, receipt.buildAndReturn());
     }
+
+    @Test
+    public void receipt_for_few_units_of_a_tax_free_product() {
+        expected =
+                "3 chocolates bar: 9.90\n" +
+                "Sales Taxes: 0.00\n" +
+                "Total: 9.90";
+
+        receipt.add(new Purchase(3, "chocolates bar", new BigDecimal(3.30)));
+
+        assertEquals(expected, receipt.buildAndReturn());
+    }
 }
