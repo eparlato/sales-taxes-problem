@@ -1,10 +1,8 @@
 package it.eparlato.salestaxesproblem.acceptance;
 
 import it.eparlato.salestaxesproblem.CashRegister;
-import it.eparlato.salestaxesproblem.PurchaseBuilder;
-import it.eparlato.salestaxesproblem.Receipt;
+import it.eparlato.salestaxesproblem.RegexPurchaseBuilder;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -14,12 +12,12 @@ public class SinglePurchaseAcceptanceTest {
     String output;
     String expected;
 
-    PurchaseBuilder purchaseBuilder = new PurchaseBuilder();
+    RegexPurchaseBuilder purchaseBuilder = new RegexPurchaseBuilder();
     CashRegister cashRegister;
 
     @Before
     public void setup() {
-        purchaseBuilder = new PurchaseBuilder();
+        purchaseBuilder = new RegexPurchaseBuilder();
         cashRegister = new CashRegister(purchaseBuilder);
     }
 

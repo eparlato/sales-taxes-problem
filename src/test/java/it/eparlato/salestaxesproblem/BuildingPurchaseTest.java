@@ -13,7 +13,7 @@ public class BuildingPurchaseTest {
 
         Purchase expected = new Purchase(1, "chocolate bar", new BigDecimal(6.20));
 
-        PurchaseBuilder purchaseBuilder = new PurchaseBuilder();
+        PurchaseBuilder purchaseBuilder = new RegexPurchaseBuilder();
 
         assertEquals(expected, purchaseBuilder.buildFromInput(input));
     }
