@@ -12,7 +12,6 @@ public class SinglePurchaseAcceptanceTest {
     PurchaseBuilder purchaseBuilder = new PurchaseBuilder();
 
     @Test
-    @Ignore
     public void should_return_an_empty_receipt_if_the_input_is_empty() {
         String input = "";
 
