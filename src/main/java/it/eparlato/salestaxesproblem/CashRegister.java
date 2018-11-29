@@ -15,6 +15,6 @@ public class CashRegister {
 
         receipt.add(purchase);
 
-        return receipt.buildAndReturn();
+        return receipt.build().getAsString();
     }
 }

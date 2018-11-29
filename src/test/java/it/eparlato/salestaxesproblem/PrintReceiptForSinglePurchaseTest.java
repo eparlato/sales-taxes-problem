@@ -22,7 +22,7 @@ public class PrintReceiptForSinglePurchaseTest {
                 "Sales Taxes: 0.00\n" +
                 "Total: 0.00";
 
-        assertEquals(expected, receipt.buildAndReturn());
+        assertEquals(expected, receipt.build().getAsString());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class PrintReceiptForSinglePurchaseTest {
 
         receipt.add(new Purchase(0,"", new BigDecimal(0)));
 
-        assertEquals(expected, receipt.buildAndReturn());
+        assertEquals(expected, receipt.build().getAsString());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PrintReceiptForSinglePurchaseTest {
 
         receipt.add(new Purchase(1, "book", new BigDecimal(7.80)));
 
-        assertEquals(expected, receipt.buildAndReturn());
+        assertEquals(expected, receipt.build().getAsString());
     }
 
     @Test
@@ -57,6 +57,7 @@ public class PrintReceiptForSinglePurchaseTest {
 
         receipt.add(new Purchase(3, "chocolates bar", new BigDecimal(3.30)));
 
-        assertEquals(expected, receipt.buildAndReturn());
+        assertEquals(expected, receipt.build().getAsString());
     }
+
 }
