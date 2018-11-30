@@ -1,18 +1,24 @@
 package it.eparlato.salestaxesproblem;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Receipt {
 
     private Purchase purchase;
     private StringBuilder receiptAsString = new StringBuilder();
+    private List<Purchase> purchases = new ArrayList<>();
 
     public void add(Purchase purchase) {
         this.purchase = purchase;
+        purchases.add(purchase);
     }
 
     public String print() {
+
         addPurchaseRow();
+
         addSalesTaxesRow();
         addTotalRow();
 
@@ -26,20 +32,25 @@ public class Receipt {
     private void addTotalRow() {
         BigDecimal total = new BigDecimal(0);
 
-        if (purchase != null) {
-            total = purchase.getTotal();
+        for(Purchase purchase : purchases) {
+            total = total.add(purchase.getTotal());
         }
 
         receiptAsString.append(String.format("Total: %.2f", total.doubleValue()));
     }
 
     private void addPurchaseRow() {
-        if (purchase != null && !purchase.isEmpty()) {
-            receiptAsString.append(String.format("%d %s: %.2f\n",
-                    purchase.getQuantity(),
-                    purchase.getProductName(),
-                    purchase.getTotal().doubleValue()));
+
+        for (Purchase purchase : purchases) {
+            if (purchase != null && !purchase.isEmpty()) {
+                receiptAsString.append(String.format("%d %s: %.2f\n",
+                        purchase.getQuantity(),
+                        purchase.getProductName(),
+                        purchase.getTotal().doubleValue()));
+            }
+
         }
+
     }
 
 }
