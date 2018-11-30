@@ -22,18 +22,18 @@ public class PrintReceiptForSinglePurchaseTest {
                 "Sales Taxes: 0.00\n" +
                 "Total: 0.00";
 
-        assertEquals(expected, receipt.build().getAsString());
+        assertEquals(expected, receipt.print());
     }
 
     @Test
     public void empty_receipt_if_an_empty_purchase_is_provided() {
         expected =
                 "Sales Taxes: 0.00\n" +
-                        "Total: 0.00";
+                "Total: 0.00";
 
         receipt.add(new Purchase(0,"", new BigDecimal(0)));
 
-        assertEquals(expected, receipt.build().getAsString());
+        assertEquals(expected, receipt.print());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PrintReceiptForSinglePurchaseTest {
 
         receipt.add(new Purchase(1, "book", new BigDecimal(7.80)));
 
-        assertEquals(expected, receipt.build().getAsString());
+        assertEquals(expected, receipt.print());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class PrintReceiptForSinglePurchaseTest {
 
         receipt.add(new Purchase(3, "chocolates bar", new BigDecimal(3.30)));
 
-        assertEquals(expected, receipt.build().getAsString());
+        assertEquals(expected, receipt.print());
     }
 
 }

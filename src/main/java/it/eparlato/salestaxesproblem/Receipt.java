@@ -1,5 +1,7 @@
 package it.eparlato.salestaxesproblem;
 
+import java.math.BigDecimal;
+
 public class Receipt {
 
     private Purchase purchase;
@@ -9,34 +11,29 @@ public class Receipt {
         this.purchase = purchase;
     }
 
-    public Receipt build() {
+    public String print() {
+        addPurchaseRow();
+        addSalesTaxesRow();
+        addTotalRow();
 
-        buildPurchaseRow();
-
-        buildSalesTaxesRow();
-
-        buildTotalRow();
-
-        return this;
-    }
-
-    public String getAsString() {
         return receiptAsString.toString();
     }
 
-    private void buildSalesTaxesRow() {
+    private void addSalesTaxesRow() {
         receiptAsString.append("Sales Taxes: 0.00\n");
     }
 
-    private void buildTotalRow() {
+    private void addTotalRow() {
+        BigDecimal total = new BigDecimal(0);
+
         if (purchase != null) {
-            receiptAsString.append(String.format("Total: %.2f", purchase.getTotal().doubleValue()));
-        } else {
-            receiptAsString.append("Total: 0.00");
+            total = purchase.getTotal();
         }
+
+        receiptAsString.append(String.format("Total: %.2f", total.doubleValue()));
     }
 
-    private void buildPurchaseRow() {
+    private void addPurchaseRow() {
         if (purchase != null && !purchase.isEmpty()) {
             receiptAsString.append(String.format("%d %s: %.2f\n",
                     purchase.getQuantity(),

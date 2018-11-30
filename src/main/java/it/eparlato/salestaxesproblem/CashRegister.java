@@ -13,8 +13,11 @@ public class CashRegister {
 
         Receipt receipt = new Receipt();
 
-        receipt.add(purchase);
+        if (purchase != null) {
+            receipt.add(purchase);
+        }
 
-        return receipt.build().getAsString();
+
+        return receipt.print();
     }
 }
