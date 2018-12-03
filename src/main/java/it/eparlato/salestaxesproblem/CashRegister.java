@@ -1,5 +1,7 @@
 package it.eparlato.salestaxesproblem;
 
+import java.util.List;
+
 public class CashRegister {
     private PurchaseBuilder purchaseBuilder;
 
@@ -10,12 +12,19 @@ public class CashRegister {
     public String process(String input) {
 
         Purchase purchase = purchaseBuilder.buildFromInput(input);
+        List<Purchase> purchases = purchaseBuilder.buildPurchasesFromInput(input);
 
         Receipt receipt = new Receipt();
 
+        /*
         if (purchase != null) {
             receipt.add(purchase);
         }
+        */
+        for (Purchase purchase2 : purchases) {
+            receipt.add(purchase2);
+        }
+
 
 
         return receipt.print();
