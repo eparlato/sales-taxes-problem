@@ -11,21 +11,13 @@ public class CashRegister {
 
     public String process(String input) {
 
-        Purchase purchase = purchaseBuilder.buildFromInput(input);
         List<Purchase> purchases = purchaseBuilder.buildPurchasesFromInput(input);
 
         Receipt receipt = new Receipt();
 
-        /*
-        if (purchase != null) {
+        for (Purchase purchase : purchases) {
             receipt.add(purchase);
         }
-        */
-        for (Purchase purchase2 : purchases) {
-            receipt.add(purchase2);
-        }
-
-
 
         return receipt.print();
     }
