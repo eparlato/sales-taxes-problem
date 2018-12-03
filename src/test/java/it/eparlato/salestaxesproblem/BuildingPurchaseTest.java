@@ -15,6 +15,7 @@ public class BuildingPurchaseTest {
 
         PurchaseBuilder purchaseBuilder = new RegexPurchaseBuilder();
 
-        assertEquals(expected, purchaseBuilder.buildFromInput(input));
+        assertEquals(expected, purchaseBuilder.buildPurchasesFromInput(input).get(0));
     }
+
 }

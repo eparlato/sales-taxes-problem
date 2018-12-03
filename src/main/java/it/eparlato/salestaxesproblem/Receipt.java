@@ -6,12 +6,10 @@ import java.util.List;
 
 public class Receipt {
 
-    private Purchase purchase;
     private StringBuilder receiptAsString = new StringBuilder();
     private List<Purchase> purchases = new ArrayList<>();
 
     public void add(Purchase purchase) {
-        this.purchase = purchase;
         purchases.add(purchase);
     }
 
