@@ -17,10 +17,11 @@ public class BuildingPurchaseTest {
     public void a_purchase_should_be_built_from_an_input() {
         input = "1 chocolate bar at 6.20";
 
-        Purchase expected = new Purchase(1, "chocolate bar", new BigDecimal(6.20));
+        Purchase expected = buildPurchase(1, "chocolate bar", 6.20);
 
         assertEquals(expected, purchaseBuilder.buildPurchasesFromInput(input).get(0));
     }
+
 
     @Test
     public void a_list_of_purchased_should_be_built_from_an_input() {
@@ -31,11 +32,16 @@ public class BuildingPurchaseTest {
 
         List<Purchase> expectedPurchases =
             Arrays.asList(
-                    new Purchase(3, "books", new BigDecimal(6.70)),
-                    new Purchase(4, "chocolate bar", new BigDecimal(4.10)),
-                    new Purchase(3, "box of headache pills", new BigDecimal(20.50))
+                    buildPurchase(3, "books", 6.70),
+                    buildPurchase(4, "chocolate bar", 4.10),
+                    buildPurchase(3, "box of headache pills", 20.50)
                     );
 
+
         assertEquals(expectedPurchases, purchaseBuilder.buildPurchasesFromInput(input));
+    }
+
+    private Purchase buildPurchase(int quantity, String productName, double price) {
+        return new Purchase(quantity, productName, new BigDecimal(price));
     }
 }
