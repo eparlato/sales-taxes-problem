@@ -1,6 +1,7 @@
 package it.eparlato.salestaxesproblem;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Purchase {
     private int quantity;
@@ -27,25 +28,30 @@ public class Purchase {
 
     @Override
     public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+
         if(!(obj instanceof Purchase)) {
             return false;
         }
 
         Purchase that = (Purchase) obj;
 
-        if (this.quantity != that.quantity) {
-            return false;
-        }
 
-        if (!this.productName.equals(that.productName)) {
-            return false;
-        }
+        return (this.quantity == that.quantity) &&
+                (this.productName.equals(that.productName)) &&
+                (this.price.compareTo(that.price) == 0);
+    }
 
-        if (!(this.price.compareTo(that.price) == 0)) {
-            return false;
-        }
+    @Override
+    public int hashCode() {
+        int result = 17;
 
-        return true;
+        result = 31 * result + quantity;
+        result = 31 * result + productName.hashCode();
+        result = 31 * result + price.hashCode();
+
+        return result;
     }
 
     public boolean isEmpty() {
