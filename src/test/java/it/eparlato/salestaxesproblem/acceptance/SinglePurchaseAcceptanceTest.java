@@ -36,8 +36,7 @@ public class SinglePurchaseAcceptanceTest {
 
     @Test
     public void should_return_a_receipt_for_one_unit_of_a_tax_free_product() {
-        input =
-                "1 box of headache pills at 34.40\n";
+        input = "1 box of headache pills at 34.40\n";
 
         expected =
                 "1 box of headache pills: 34.40\n" +
@@ -51,8 +50,7 @@ public class SinglePurchaseAcceptanceTest {
 
     @Test
     public void should_return_a_receipt_for_a_few_units_of_a_tax_free_product() {
-        input =
-                "3 books at 15.20\n";
+        input = "3 books at 15.20\n";
 
         expected =
                 "3 books: 45.60\n" +

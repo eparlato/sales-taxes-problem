@@ -15,10 +15,14 @@ public class CashRegister {
 
         Receipt receipt = new Receipt();
 
+        addPurchasesToReceipt(purchases, receipt);
+
+        return receipt.print();
+    }
+
+    private void addPurchasesToReceipt(List<Purchase> purchases, Receipt receipt) {
         for (Purchase purchase : purchases) {
             receipt.add(purchase);
         }
-
-        return receipt.print();
     }
 }
