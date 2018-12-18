@@ -30,7 +30,7 @@ public class BuildingPurchaseTest {
         public void a_single_purchase_should_be_built_if_the_input_is_one_row() {
             input = "1 chocolate bar at 6.20";
 
-            Purchase expected = buildPurchase(1, "chocolate bar", 6.20);
+            Purchase expected = buildPurchaseWithoutTaxes(1, "chocolate bar", 6.20);
 
             assertEquals(expected, purchaseBuilder.buildPurchasesFromInput(input).get(0));
         }
@@ -44,9 +44,9 @@ public class BuildingPurchaseTest {
 
             List<Purchase> expectedPurchases =
                     Arrays.asList(
-                            buildPurchase(3, "books", 6.70),
-                            buildPurchase(4, "chocolate bar", 4.10),
-                            buildPurchase(3, "box of headache pills", 20.50)
+                            buildPurchaseWithoutTaxes(3, "books", 6.70),
+                            buildPurchaseWithoutTaxes(4, "chocolate bar", 4.10),
+                            buildPurchaseWithoutTaxes(3, "box of headache pills", 20.50)
                     );
 
 
@@ -54,16 +54,24 @@ public class BuildingPurchaseTest {
         }
 
         @Test
+        public void a_purchase_with_zero_tax_should_be_built_if_product_is_tax_free() {
+            input = "1 chocolate bar at 4.50";
+
+            Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
+
+            assertEquals(new BigDecimal(0.00), purchase.getTaxValue());
+        }
+
+        @Test
         @Ignore
         public void a_purchase_with_a_tax_should_be_built_if_product_is_taxed() {
-
             input = "1 bottle of perfume at 25.00";
 
             Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
 
             assertEquals(new BigDecimal(2.50), purchase.getTaxValue());
-
         }
+
     }
 
     public static class Given_a_product_name extends CommonSetup {
@@ -87,7 +95,7 @@ public class BuildingPurchaseTest {
 
     }
 
-    private static Purchase buildPurchase(int quantity, String productName, double price) {
-        return new Purchase(quantity, productName, new BigDecimal(price));
+    private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
+        return new Purchase(quantity, productName, new BigDecimal(price), new BigDecimal(0.00));
     }
 }

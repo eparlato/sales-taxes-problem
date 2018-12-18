@@ -1,7 +1,6 @@
 package it.eparlato.salestaxesproblem;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Purchase {
     private int quantity;
@@ -9,11 +8,11 @@ public class Purchase {
     private BigDecimal price;
     private BigDecimal taxValue;
 
-    public Purchase(int quantity, String productName, BigDecimal price) {
+    public Purchase(int quantity, String productName, BigDecimal price, BigDecimal taxValue) {
         this.quantity = quantity;
         this.productName = productName;
         this.price = price;
-        this.taxValue = new BigDecimal(2.50);
+        this.taxValue = taxValue;
     }
 
     public int getQuantity() {

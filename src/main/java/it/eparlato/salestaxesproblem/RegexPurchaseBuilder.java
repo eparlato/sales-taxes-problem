@@ -20,13 +20,15 @@ public class RegexPurchaseBuilder implements PurchaseBuilder {
         int quantity;
         String productName;
         BigDecimal price;
+        BigDecimal taxValue;
 
         while (matcher.find()) {
             quantity = Integer.valueOf(matcher.group(1));
             productName = matcher.group(2);
             price = new BigDecimal(Double.valueOf(matcher.group(3)));
+            taxValue = new BigDecimal(0.00);
 
-            purchases.add(new Purchase(quantity, productName, price));
+            purchases.add(new Purchase(quantity, productName, price, taxValue));
         }
 
 

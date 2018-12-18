@@ -30,8 +30,8 @@ public class PrintingReceiptForMultiplePurchasesTest {
                     "Sales Taxes: 0.00\n" +
                     "Total: 8.00";
 
-            receipt.add(new Purchase(1, "book", new BigDecimal(5.60)));
-            receipt.add(new Purchase(1, "chocolate bar", new BigDecimal(2.40)));
+            receipt.add(new Purchase(1, "book", new BigDecimal(5.60), new BigDecimal(0.00)));
+            receipt.add(new Purchase(1, "chocolate bar", new BigDecimal(2.40), new BigDecimal(0.00)));
 
 
             assertEquals(expected, receipt.print());
