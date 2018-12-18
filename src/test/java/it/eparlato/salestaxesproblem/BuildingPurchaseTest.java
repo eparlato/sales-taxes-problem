@@ -63,13 +63,21 @@ public class BuildingPurchaseTest {
         }
 
         @Test
-        @Ignore
-        public void a_purchase_with_a_tax_should_be_built_if_product_is_taxed() {
+        public void a_single_item_purchase_with_a_10_percent_tax_should_be_built_if_product_is_base_taxed() {
             input = "1 bottle of perfume at 25.00";
 
             Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
 
-            assertEquals(new BigDecimal(2.50), purchase.getTaxValue());
+            assertEquals(2.50, purchase.getTaxValue().doubleValue());
+        }
+
+        @Test
+        public void a_multiple_items_purchase_with_a_10_percent_tax_should_be_built_if_product_is_base_taxed() {
+            input = "3 bottle of perfume at 21.00";
+
+            Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
+
+            assertEquals(6.30, purchase.getTaxValue().doubleValue());
         }
 
         private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
