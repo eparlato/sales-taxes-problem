@@ -23,7 +23,7 @@ public class MultiplePurchaseAcceptanceTest {
     }
 
     @Test
-    public void should_print_a_receipt_for_a_few_purchases_of_one_unit_of_tax_free_goods() {
+    public void a_receipt_for_a_few_purchases_of_one_unit_of_tax_free_goods() {
         input =
                 "1 chocolate bar at 0.85\n" +
                 "1 book at 10.25";
