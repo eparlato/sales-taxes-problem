@@ -7,11 +7,13 @@ public class Purchase {
     private int quantity;
     private String productName;
     private BigDecimal price;
+    private BigDecimal taxValue;
 
     public Purchase(int quantity, String productName, BigDecimal price) {
         this.quantity = quantity;
         this.productName = productName;
         this.price = price;
+        this.taxValue = new BigDecimal(2.50);
     }
 
     public int getQuantity() {
@@ -56,5 +58,9 @@ public class Purchase {
 
     public boolean isEmpty() {
         return quantity == 0;
+    }
+
+    public BigDecimal getTaxValue() {
+        return taxValue;
     }
 }

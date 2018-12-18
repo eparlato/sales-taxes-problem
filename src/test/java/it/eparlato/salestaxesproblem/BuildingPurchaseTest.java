@@ -1,6 +1,7 @@
 package it.eparlato.salestaxesproblem;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -50,6 +51,18 @@ public class BuildingPurchaseTest {
 
 
             assertEquals(expectedPurchases, purchaseBuilder.buildPurchasesFromInput(input));
+        }
+
+        @Test
+        @Ignore
+        public void a_purchase_with_a_tax_should_be_built_if_product_is_taxed() {
+
+            input = "1 bottle of perfume at 25.00";
+
+            Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
+
+            assertEquals(new BigDecimal(2.50), purchase.getTaxValue());
+
         }
     }
 

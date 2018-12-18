@@ -7,6 +7,12 @@ AT receipt with a row for multiple items of imported products with base tax
 AT input 1
 AT input 2
 AT input 3
+
+A product without tax must have a tax value of zero
+A product with a basic sales tax should have a tax value of 10% its price
+An imported product should have a tax value of 5% its price
+An imported product with base tax should have a tax value of 15% its price
+ 
 Build purchase with base 10% tax if product is taxed
 Build purchase with 5% tax if product is imported
 Build purchase with 15% tax if product is taxed and imported
