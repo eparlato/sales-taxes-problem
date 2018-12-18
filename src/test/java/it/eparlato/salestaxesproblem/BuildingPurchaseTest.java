@@ -1,5 +1,6 @@
 package it.eparlato.salestaxesproblem;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -12,9 +13,17 @@ import static junit.framework.TestCase.assertEquals;
 
 @RunWith(Enclosed.class)
 public class BuildingPurchaseTest {
-    public static class Given_an_input_string {
+    public static abstract class CommonSetup {
         String input;
-        PurchaseBuilder purchaseBuilder = new RegexPurchaseBuilder();
+        PurchaseBuilder purchaseBuilder;
+
+        @Before
+        public void init() {
+            purchaseBuilder = new RegexPurchaseBuilder();
+        }
+    }
+
+    public static class Given_an_input_string extends CommonSetup {
 
         @Test
         public void a_single_purchase_should_be_built_if_the_input_is_one_row() {
@@ -42,12 +51,30 @@ public class BuildingPurchaseTest {
 
             assertEquals(expectedPurchases, purchaseBuilder.buildPurchasesFromInput(input));
         }
+    }
 
+    public static class Given_a_product_name extends CommonSetup {
+        @Test
+        public void if_there_are_no_spaces_a_purchase_with_that_name_should_be_built() {
+            input = "1 book at 5.60";
 
+            Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
 
-        private Purchase buildPurchase(int quantity, String productName, double price) {
-            return new Purchase(quantity, productName, new BigDecimal(price));
+            assertEquals("book", purchase.getProductName());
         }
 
+        @Test
+        public void if_there_are_spaces_a_purchase_with_that_name_shoud_be_print() {
+            input = "1 music CD at 15.30";
+
+            Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
+
+            assertEquals("music CD", purchase.getProductName());
+        }
+
+    }
+
+    private static Purchase buildPurchase(int quantity, String productName, double price) {
+        return new Purchase(quantity, productName, new BigDecimal(price));
     }
 }
