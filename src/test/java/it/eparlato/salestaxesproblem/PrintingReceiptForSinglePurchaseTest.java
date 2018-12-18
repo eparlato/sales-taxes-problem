@@ -36,7 +36,7 @@ public class PrintingReceiptForSinglePurchaseTest {
                     "Sales Taxes: 0.00\n" +
                     "Total: 0.00";
 
-            receipt.add(new Purchase(0,"", new BigDecimal(0), new BigDecimal(0.00)));
+            receipt.add(buildPurchaseWithoutTaxes(0, "", 0.00));
 
             assertEquals(expected, receipt.print());
         }
@@ -48,7 +48,7 @@ public class PrintingReceiptForSinglePurchaseTest {
                     "Sales Taxes: 0.00\n" +
                     "Total: 7.80";
 
-            receipt.add(new Purchase(1, "book", new BigDecimal(7.80), new BigDecimal(0.00)));
+            receipt.add(buildPurchaseWithoutTaxes(1, "book", 7.80));
 
             assertEquals(expected, receipt.print());
         }
@@ -60,9 +60,13 @@ public class PrintingReceiptForSinglePurchaseTest {
                     "Sales Taxes: 0.00\n" +
                     "Total: 9.90";
 
-            receipt.add(new Purchase(3, "chocolates bar", new BigDecimal(3.30), new BigDecimal(0.00)));
+            receipt.add(buildPurchaseWithoutTaxes(3, "chocolates bar", 3.30));
 
             assertEquals(expected, receipt.print());
+        }
+
+        private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
+            return new Purchase(quantity, productName, new BigDecimal(price), new BigDecimal(0.00));
         }
 
 

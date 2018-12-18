@@ -30,13 +30,15 @@ public class PrintingReceiptForMultiplePurchasesTest {
                     "Sales Taxes: 0.00\n" +
                     "Total: 8.00";
 
-            receipt.add(new Purchase(1, "book", new BigDecimal(5.60), new BigDecimal(0.00)));
-            receipt.add(new Purchase(1, "chocolate bar", new BigDecimal(2.40), new BigDecimal(0.00)));
-
+            receipt.add(buildPurchaseWithoutTaxes(1, "book", 5.60));
+            receipt.add(buildPurchaseWithoutTaxes(1, "chocolate bar", 2.40));
 
             assertEquals(expected, receipt.print());
         }
 
+        private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
+            return new Purchase(quantity, productName, new BigDecimal(price), new BigDecimal(0.00));
+        }
 
     }
 

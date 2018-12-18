@@ -72,6 +72,10 @@ public class BuildingPurchaseTest {
             assertEquals(new BigDecimal(2.50), purchase.getTaxValue());
         }
 
+        private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
+            return new Purchase(quantity, productName, new BigDecimal(price), new BigDecimal(0.00));
+        }
+
     }
 
     public static class Given_a_product_name extends CommonSetup {
@@ -95,7 +99,4 @@ public class BuildingPurchaseTest {
 
     }
 
-    private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
-        return new Purchase(quantity, productName, new BigDecimal(price), new BigDecimal(0.00));
-    }
 }
