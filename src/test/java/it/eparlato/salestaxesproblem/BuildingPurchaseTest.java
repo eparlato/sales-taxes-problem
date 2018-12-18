@@ -64,7 +64,7 @@ public class BuildingPurchaseTest {
         }
 
         @Test
-        public void if_there_are_spaces_a_purchase_with_that_name_shoud_be_print() {
+        public void if_there_are_spaces_a_purchase_with_that_name_should_be_print() {
             input = "1 music CD at 15.30";
 
             Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
