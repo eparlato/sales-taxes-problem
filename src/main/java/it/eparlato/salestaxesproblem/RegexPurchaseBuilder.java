@@ -45,12 +45,21 @@ public class RegexPurchaseBuilder implements PurchaseBuilder {
     }
 
     private BigDecimal calculateTax(int quantity, String productName, BigDecimal price) {
-        if (taxedProducts.contains(productName)) {
-            BigDecimal taxValue = taxCalculator.getTaxValue(price, new BigDecimal(10));
+        BigDecimal taxValue = new BigDecimal(0);
 
-            return taxValue.multiply(new BigDecimal(quantity));
+        if (productName.contains("imported")) {
+            productName = productName.replace("imported", "").trim();
+
+            taxValue = taxValue.add(taxCalculator.getTaxValue(price, new BigDecimal(5)));
         }
 
-        return new BigDecimal(0.00);
+        if (taxedProducts.contains(productName)) {
+            taxValue = taxValue.add(taxCalculator.getTaxValue(price, new BigDecimal(10)));
+
+        }
+
+
+        return taxValue.multiply(new BigDecimal( quantity));
+
     }
 }
