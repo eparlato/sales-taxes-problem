@@ -24,7 +24,13 @@ public class Receipt {
     }
 
     private void addSalesTaxesRow() {
-        receiptAsString.append("Sales Taxes: 0.00\n");
+        BigDecimal totalTaxAmount = new BigDecimal(0);
+
+        for (Purchase purchase : purchases) {
+            totalTaxAmount = totalTaxAmount.add(purchase.getTaxValue());
+        }
+
+        receiptAsString.append(String.format("Sales Taxes: %.2f\n", totalTaxAmount.doubleValue()));
     }
 
     private void addTotalRow() {
@@ -32,6 +38,7 @@ public class Receipt {
 
         for(Purchase purchase : purchases) {
             total = total.add(purchase.getTotal());
+            total = total.add(purchase.getTaxValue());
         }
 
         receiptAsString.append(String.format("Total: %.2f", total.doubleValue()));
@@ -44,7 +51,7 @@ public class Receipt {
                 receiptAsString.append(String.format("%d %s: %.2f\n",
                         purchase.getQuantity(),
                         purchase.getProductName(),
-                        purchase.getTotal().doubleValue()));
+                        purchase.getTotal().doubleValue() + purchase.getTaxValue().doubleValue()));
             }
 
         }

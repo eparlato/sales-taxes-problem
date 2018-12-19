@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class RegexPurchaseBuilder implements PurchaseBuilder {
 
     private final List<String> taxedProducts = Arrays.asList(
-            "bottle of perfume");
+            "bottle of perfume", "music CD");
 
     @Override
     public List<Purchase> buildPurchasesFromInput(String input) {

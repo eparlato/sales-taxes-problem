@@ -1,7 +1,5 @@
 # TODO
 
-AT receipt with a row for single item of product with base tax
-AT receipt with a row for multiple items of product with base tax
 AT receipt with a row for multiple items of imported products
 AT receipt with a row for multiple items of imported products with base tax
 AT input 1

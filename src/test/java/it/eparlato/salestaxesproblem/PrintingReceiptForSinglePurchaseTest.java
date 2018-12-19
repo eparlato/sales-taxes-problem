@@ -54,6 +54,20 @@ public class PrintingReceiptForSinglePurchaseTest {
         }
 
         @Test
+        public void one_product_row_with_filled_taxes_row_and_total_row_if_product_is_taxed() {
+            expected =
+                    "1 mobile phone: 220.00\n" +
+                    "Sales Taxes: 20.00\n" +
+                    "Total: 220.00";
+
+            receipt.add(new Purchase(1, "mobile phone", new BigDecimal(200.00), new BigDecimal(20.00)));
+
+            assertEquals(expected, receipt.print());
+        }
+
+
+
+        @Test
         public void one_product_row_with_sales_taxes_row_and_total_row_for_a_multiple_units_purchase() {
             expected =
                     "3 chocolates bar: 9.90\n" +

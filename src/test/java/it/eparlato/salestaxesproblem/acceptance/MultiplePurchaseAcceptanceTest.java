@@ -9,9 +9,9 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 
 public class MultiplePurchaseAcceptanceTest {
-    String input;
-    String output;
-    String expected;
+    String input = "input";
+    String output = "output";
+    String expected = "expected";
 
     RegexPurchaseBuilder purchaseBuilder = new RegexPurchaseBuilder();
     CashRegister cashRegister;
@@ -34,6 +34,23 @@ public class MultiplePurchaseAcceptanceTest {
                 "Sales Taxes: 0.00\n" +
                 "Total: 11.10"
         ;
+
+        output = cashRegister.process(input);
+
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void a_receipt_for_a_few_purchases_of_a_few_units_of_base_taxed_products() {
+        input =
+                "1 bottle of perfume at 18.99\n" +
+                "1 music CD at 14.99\n";
+
+        expected =
+                "1 bottle of perfume: 20.89\n" +
+                "1 music CD: 16.49\n" +
+                "Sales Taxes: 3.40\n" +
+                "Total: 37.38";
 
         output = cashRegister.process(input);
 
