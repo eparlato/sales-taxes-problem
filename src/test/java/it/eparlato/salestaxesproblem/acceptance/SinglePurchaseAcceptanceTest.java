@@ -2,6 +2,7 @@ package it.eparlato.salestaxesproblem.acceptance;
 
 import it.eparlato.salestaxesproblem.CashRegister;
 import it.eparlato.salestaxesproblem.RegexPurchaseBuilder;
+import it.eparlato.salestaxesproblem.TaxCalculatorImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,12 +13,12 @@ public class SinglePurchaseAcceptanceTest {
     String output;
     String expected;
 
-    RegexPurchaseBuilder purchaseBuilder = new RegexPurchaseBuilder();
+    RegexPurchaseBuilder purchaseBuilder;
     CashRegister cashRegister;
 
     @Before
     public void setup() {
-        purchaseBuilder = new RegexPurchaseBuilder();
+        purchaseBuilder = new RegexPurchaseBuilder(new TaxCalculatorImpl());
         cashRegister = new CashRegister(purchaseBuilder);
     }
 

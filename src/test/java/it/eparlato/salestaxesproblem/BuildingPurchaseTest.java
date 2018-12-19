@@ -20,7 +20,7 @@ public class BuildingPurchaseTest {
 
         @Before
         public void init() {
-            purchaseBuilder = new RegexPurchaseBuilder();
+            purchaseBuilder = new RegexPurchaseBuilder(new TaxCalculatorImpl());
         }
     }
 

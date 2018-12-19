@@ -12,6 +12,11 @@ public class RegexPurchaseBuilder implements PurchaseBuilder {
 
     private final List<String> taxedProducts = Arrays.asList(
             "bottle of perfume", "music CD");
+    private TaxCalculator taxCalculator;
+
+    public RegexPurchaseBuilder(TaxCalculator taxcalculator) {
+        this.taxCalculator = taxcalculator;
+    }
 
     @Override
     public List<Purchase> buildPurchasesFromInput(String input) {
@@ -41,10 +46,9 @@ public class RegexPurchaseBuilder implements PurchaseBuilder {
 
     private BigDecimal calculateTax(int quantity, String productName, BigDecimal price) {
         if (taxedProducts.contains(productName)) {
-            BigDecimal tax = price.divide(new BigDecimal(10)).multiply(new BigDecimal(quantity));
+            BigDecimal taxValue = taxCalculator.getTaxValue(price, new BigDecimal(10));
 
-            return tax.divide(BigDecimal.valueOf(0.05), 0, RoundingMode.UP)
-                    .multiply(BigDecimal.valueOf(0.05));
+            return taxValue.multiply(new BigDecimal(quantity));
         }
 
         return new BigDecimal(0.00);
