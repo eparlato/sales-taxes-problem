@@ -23,10 +23,6 @@ public class Purchase {
         return productName;
     }
 
-    public BigDecimal getTotal() {
-        return price.multiply(new BigDecimal(quantity));
-    }
-
     @Override
     public boolean equals(Object obj) {
         if(obj == this)
@@ -61,5 +57,9 @@ public class Purchase {
 
     public BigDecimal getTaxValue() {
         return taxValue;
+    }
+
+    public BigDecimal getTotal() {
+        return price.multiply(new BigDecimal(quantity)).add(taxValue);
     }
 }

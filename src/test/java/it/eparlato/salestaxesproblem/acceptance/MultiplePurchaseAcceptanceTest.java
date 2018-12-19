@@ -3,7 +3,6 @@ package it.eparlato.salestaxesproblem.acceptance;
 import it.eparlato.salestaxesproblem.CashRegister;
 import it.eparlato.salestaxesproblem.RegexPurchaseBuilder;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

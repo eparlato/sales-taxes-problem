@@ -16,7 +16,6 @@ public class Receipt {
     public String print() {
 
         addPurchaseRow();
-
         addSalesTaxesRow();
         addTotalRow();
 
@@ -38,7 +37,6 @@ public class Receipt {
 
         for(Purchase purchase : purchases) {
             total = total.add(purchase.getTotal());
-            total = total.add(purchase.getTaxValue());
         }
 
         receiptAsString.append(String.format("Total: %.2f", total.doubleValue()));
@@ -51,11 +49,9 @@ public class Receipt {
                 receiptAsString.append(String.format("%d %s: %.2f\n",
                         purchase.getQuantity(),
                         purchase.getProductName(),
-                        purchase.getTotal().doubleValue() + purchase.getTaxValue().doubleValue()));
+                        purchase.getTotal()));
             }
-
         }
-
     }
 
 }
