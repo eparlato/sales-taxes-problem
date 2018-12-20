@@ -132,7 +132,7 @@ public class BuildingPurchaseTest {
         }
 
         @Test
-        public void if_contains_imported_string_then_the_product_is_imported() {
+        public void if_contains_the_imported_string_an_imported_purchase_should_be_built() {
             input = "1 imported perfume at 26.00";
 
             Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
