@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Enclosed.class)
 public class BuildingPurchaseTest {
@@ -129,6 +130,16 @@ public class BuildingPurchaseTest {
 
             assertEquals("music CD", purchase.getProductName());
         }
-    }
 
+        @Test
+        public void if_contains_imported_string_then_the_product_is_imported() {
+            input = "1 imported perfume at 26.00";
+
+            Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
+
+            assertTrue("The product should be an imported one", purchase.isProductImported());
+        }
+
+
+    }
 }

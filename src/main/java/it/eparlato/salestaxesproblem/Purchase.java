@@ -7,12 +7,21 @@ public class Purchase {
     private String productName;
     private BigDecimal price;
     private BigDecimal taxValue;
+    private boolean productIsImported = false;
 
     public Purchase(int quantity, String productName, BigDecimal price, BigDecimal taxValue) {
         this.quantity = quantity;
         this.productName = productName;
         this.price = price;
         this.taxValue = taxValue;
+
+        assignImportedProductFlag(productName);
+    }
+
+    private void assignImportedProductFlag(String productName) {
+        if (productName.contains("imported")) {
+            this.productIsImported = true;
+        }
     }
 
     public int getQuantity() {
@@ -61,5 +70,9 @@ public class Purchase {
 
     public BigDecimal getTotal() {
         return price.multiply(new BigDecimal(quantity)).add(taxValue);
+    }
+
+    public boolean isProductImported() {
+        return productIsImported;
     }
 }

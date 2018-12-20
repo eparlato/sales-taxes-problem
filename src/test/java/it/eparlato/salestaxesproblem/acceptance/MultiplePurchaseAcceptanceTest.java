@@ -4,6 +4,7 @@ import it.eparlato.salestaxesproblem.CashRegister;
 import it.eparlato.salestaxesproblem.RegexPurchaseBuilder;
 import it.eparlato.salestaxesproblem.TaxCalculatorImpl;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -93,4 +94,24 @@ public class MultiplePurchaseAcceptanceTest {
         assertEquals(expected, output);
     }
 
+    @Test
+    @Ignore
+    public void shopping_basket_3() {
+        input = "1 imported bottle of perfume at 27.99\n" +
+                "1 bottle of perfume at 18.99\n" +
+                "1 packet of headache pills at 9.75\n" +
+                "3 box of imported chocolates at 11.25";
+
+        expected =
+                "1 imported bottle of perfume: 32.19\n" +
+                "1 bottle of perfume: 20.89\n" +
+                "1 packet of headache pills: 9.75\n" +
+                "3 imported box of chocolates: 35.55\n" +
+                "Sales Taxes: 7.90\n" +
+                "Total: 98.38";
+
+        output = cashRegister.process(input);
+
+        assertEquals(expected, output);
+    }
 }

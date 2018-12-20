@@ -1,6 +1,7 @@
 package it.eparlato.salestaxesproblem;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -65,8 +66,6 @@ public class PrintingReceiptForSinglePurchaseTest {
             assertEquals(expected, receipt.print());
         }
 
-
-
         @Test
         public void one_product_row_with_sales_taxes_row_and_total_row_for_a_multiple_units_purchase() {
             expected =
@@ -78,6 +77,21 @@ public class PrintingReceiptForSinglePurchaseTest {
 
             assertEquals(expected, receipt.print());
         }
+
+        @Test
+        @Ignore
+        public void one_product_row_with_imported_label_preceding_product_name_if_product_is_imported() {
+            expected =
+                    "3 imported box of chocolates: 35.55\n" +
+                    "Sales Taxes: 1.80\n" +
+                    "Total: 35.55";
+
+            receipt.add(new Purchase(3, "box of imported chocolates", new BigDecimal(35.55), new BigDecimal(1.80)));
+
+            assertEquals(expected, receipt.print());
+        }
+
+
 
         private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
             return new Purchase(quantity, productName, new BigDecimal(price), new BigDecimal(0.00));
