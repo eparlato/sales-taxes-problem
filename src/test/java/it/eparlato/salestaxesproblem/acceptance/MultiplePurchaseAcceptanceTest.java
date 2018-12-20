@@ -95,7 +95,6 @@ public class MultiplePurchaseAcceptanceTest {
     }
 
     @Test
-    @Ignore
     public void shopping_basket_3() {
         input = "1 imported bottle of perfume at 27.99\n" +
                 "1 bottle of perfume at 18.99\n" +
