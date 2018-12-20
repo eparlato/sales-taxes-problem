@@ -90,4 +90,5 @@ public class SinglePurchaseAcceptanceTest {
 
         assertEquals(expected, output);
     }
+
 }

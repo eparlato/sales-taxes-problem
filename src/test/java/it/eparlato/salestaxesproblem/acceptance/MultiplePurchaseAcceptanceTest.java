@@ -56,4 +56,41 @@ public class MultiplePurchaseAcceptanceTest {
 
         assertEquals(expected, output);
     }
+
+    @Test
+    public void shopping_basket_1() {
+        input =
+                "2 book at 12.49\n" +
+                "1 music CD at 14.99\n" +
+                "1 chocolate bar at 0.85";
+
+        expected =
+                "2 book: 24.98\n" +
+                "1 music CD: 16.49\n" +
+                "1 chocolate bar: 0.85\n" +
+                "Sales Taxes: 1.50\n" +
+                "Total: 42.32";
+
+        output = cashRegister.process(input);
+
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void shopping_basket_2() {
+        input =
+                "1 imported box of chocolates at 10.00\n" +
+                "1 imported bottle of perfume at 47.50";
+
+        expected =
+                "1 imported box of chocolates: 10.50\n" +
+                "1 imported bottle of perfume: 54.65\n" +
+                "Sales Taxes: 7.65\n" +
+                "Total: 65.15";
+
+        output = cashRegister.process(input);
+
+        assertEquals(expected, output);
+    }
+
 }
