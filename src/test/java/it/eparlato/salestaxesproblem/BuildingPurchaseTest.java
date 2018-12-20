@@ -100,6 +100,15 @@ public class BuildingPurchaseTest {
             assertEquals(2.00, purchase.getTaxValue().doubleValue());
         }
 
+        @Test
+        public void a_multiple_unit_purchase_with_a_15_percent_tax_should_be_built_if_product_is_imported_and_base_taxed() {
+            input = "2 imported bottle of perfume at 27.99";
+
+            Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
+
+            assertEquals(8.40, purchase.getTaxValue().doubleValue());
+        }
+
     }
 
     public static class Given_a_product_name extends CommonSetup {
