@@ -59,4 +59,14 @@ Total: 98.38
 
 **IMPORTANT:**  Implement the requirements focusing on **writing the best code** you can produce.
 
+## Instructions
 
+### Requirements
+
+  * Apache Maven (tested with version 3.6.0)
+     
+### How to compile and run the tests
+
+From the project root dir launch the command
+
+    mvn clean test
