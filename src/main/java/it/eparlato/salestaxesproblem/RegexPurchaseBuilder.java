@@ -21,9 +21,8 @@ public class RegexPurchaseBuilder implements PurchaseBuilder {
         this.taxCalculator = taxcalculator;
     }
 
-    @Override
     public List<Purchase> buildPurchasesFromInput(String input) {
-        List<Purchase> purchases = new ArrayList<>();
+        List<Purchase> purchases = new ArrayList<Purchase>();
 
         String regex = "(\\d) (.*) at (\\d+.\\d{2})";
 

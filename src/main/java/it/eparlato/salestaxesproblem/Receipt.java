@@ -7,7 +7,7 @@ import java.util.List;
 public class Receipt {
 
     private StringBuilder receiptAsString = new StringBuilder();
-    private List<Purchase> purchases = new ArrayList<>();
+    private List<Purchase> purchases = new ArrayList<Purchase>();
 
     public void add(Purchase purchase) {
         purchases.add(purchase);
