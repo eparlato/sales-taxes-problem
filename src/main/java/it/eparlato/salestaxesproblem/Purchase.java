@@ -49,19 +49,8 @@ public class Purchase {
                 (this.price.compareTo(that.price) == 0);
     }
 
-    @Override
-    public int hashCode() {
-        int result = 17;
-
-        result = 31 * result + quantity;
-        result = 31 * result + productName.hashCode();
-        result = 31 * result + price.hashCode();
-
-        return result;
-    }
-
-    public boolean isEmpty() {
-        return quantity == 0;
+    public boolean isNotEmpty() {
+        return quantity != 0;
     }
 
     public BigDecimal getTaxValue() {
@@ -74,5 +63,16 @@ public class Purchase {
 
     public boolean isProductImported() {
         return productIsImported;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + quantity;
+        result = 31 * result + productName.hashCode();
+        result = 31 * result + price.hashCode();
+
+        return result;
     }
 }

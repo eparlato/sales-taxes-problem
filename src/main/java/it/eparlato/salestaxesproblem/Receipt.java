@@ -45,26 +45,34 @@ public class Receipt {
     private void addPurchaseRow() {
 
         for (Purchase purchase : purchases) {
-            String productName;
 
-
-            if (purchase != null && !purchase.isEmpty()) {
-                productName = purchase.getProductName();
-
-                // TODO: refactor
-                if (purchase.isProductImported()) {
-                    String [] splitProductName = productName.split("imported");
-
-                    productName = splitProductName[0] + splitProductName[1].trim();
-                    productName = "imported " + productName;
-                }
-
+            if (purchase.isNotEmpty()) {
                 receiptAsString.append(String.format("%d %s: %.2f\n",
                         purchase.getQuantity(),
-                        productName,
+                        buildProductName(purchase),
                         purchase.getTotal()));
             }
         }
+    }
+
+    private String buildProductName(Purchase purchase) {
+
+        if (purchase.isProductImported()) {
+            return importedProductName(purchase.getProductName());
+        }
+
+        return purchase.getProductName();
+    }
+
+    private String importedProductName(String productName) {
+        StringBuilder importedProductName = new StringBuilder();
+
+        String [] productNamePartsWithoutImportedString = productName.split("imported");
+
+        importedProductName.append("imported ");
+        importedProductName.append(productNamePartsWithoutImportedString[0]).append(productNamePartsWithoutImportedString[1].trim());
+
+        return importedProductName.toString();
     }
 
 }

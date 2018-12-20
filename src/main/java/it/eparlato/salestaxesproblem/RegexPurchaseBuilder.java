@@ -9,8 +9,12 @@ import java.util.regex.Pattern;
 
 public class RegexPurchaseBuilder implements PurchaseBuilder {
 
+    public static final BigDecimal IMPORTED_TAX_RATE = new BigDecimal(5);
+    private static final BigDecimal BASE_SALES_TAX_RATE = new BigDecimal(10);
+
     private final List<String> taxedProducts = Arrays.asList(
             "bottle of perfume", "music CD");
+
     private TaxCalculator taxCalculator;
 
     public RegexPurchaseBuilder(TaxCalculator taxcalculator) {
@@ -46,19 +50,25 @@ public class RegexPurchaseBuilder implements PurchaseBuilder {
     private BigDecimal calculateTax(int quantity, String productName, BigDecimal price) {
         BigDecimal taxValue = new BigDecimal(0);
 
-        if (productName.contains("imported")) {
-            productName = productName.replace("imported", "").trim();
-
-            taxValue = taxValue.add(taxCalculator.getTaxValue(price, new BigDecimal(5)));
+        if (isProductImported(productName)) {
+            taxValue = taxValue.add(taxCalculator.getTaxValue(price, IMPORTED_TAX_RATE));
         }
 
-        if (taxedProducts.contains(productName)) {
-            taxValue = taxValue.add(taxCalculator.getTaxValue(price, new BigDecimal(10)));
-
+        if (hasProductBaseSalesTaxApplied(productName)) {
+            taxValue = taxValue.add(taxCalculator.getTaxValue(price, BASE_SALES_TAX_RATE));
         }
-
 
         return taxValue.multiply(new BigDecimal( quantity));
+    }
 
+    private boolean isProductImported(String productName) {
+        return productName.contains("imported");
+    }
+
+    private boolean hasProductBaseSalesTaxApplied(String productName) {
+        // Need to remove imported string, if present, in order to search for product name
+        // in taxedProducts
+        productName = productName.replace("imported", "").trim();
+        return taxedProducts.contains(productName);
     }
 }
