@@ -51,7 +51,7 @@ public class SinglePurchaseAcceptanceTest {
 
     @Test
     public void a_receipt_for_a_few_units_of_a_tax_free_product() {
-        input = "3 books at 15.20\n";
+        input = "3 books at 15.20" + System.lineSeparator();
 
         expected =
                 "3 books: 45.60\n" +

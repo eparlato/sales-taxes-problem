@@ -15,6 +15,8 @@ import static junit.framework.TestCase.assertEquals;
 @RunWith(Enclosed.class)
 public class BuildingPurchaseTest {
     public static abstract class CommonSetup {
+        final BigDecimal NO_TAX_APPLIED = new BigDecimal(0);
+
         String input;
         PurchaseBuilder purchaseBuilder;
 
@@ -30,7 +32,7 @@ public class BuildingPurchaseTest {
         public void a_single_purchase_should_be_built_if_the_input_is_one_row() {
             input = "1 chocolate bar at 6.20";
 
-            Purchase expected = buildPurchaseWithoutTaxes(1, "chocolate bar", 6.20);
+            Purchase expected = new Purchase(1, "chocolate bar", new BigDecimal(6.20), NO_TAX_APPLIED);
 
             assertEquals(expected, purchaseBuilder.buildPurchasesFromInput(input).get(0));
         }
@@ -44,9 +46,9 @@ public class BuildingPurchaseTest {
 
             List<Purchase> expectedPurchases =
                     Arrays.asList(
-                            buildPurchaseWithoutTaxes(3, "books", 6.70),
-                            buildPurchaseWithoutTaxes(4, "chocolate bar", 4.10),
-                            buildPurchaseWithoutTaxes(3, "box of headache pills", 20.50)
+                            new Purchase(3, "books", new BigDecimal(6.70), NO_TAX_APPLIED),
+                            new Purchase(4, "chocolate bar", new BigDecimal(4.10), NO_TAX_APPLIED),
+                            new Purchase(3, "box of headache pills", new BigDecimal(20.50), NO_TAX_APPLIED)
                     );
 
 
@@ -63,7 +65,7 @@ public class BuildingPurchaseTest {
         }
 
         @Test
-        public void a_single_item_purchase_with_a_10_percent_tax_should_be_built_if_product_is_base_taxed() {
+        public void a_single_unit_purchase_with_a_10_percent_tax_should_be_built_if_product_is_base_taxed() {
             input = "1 bottle of perfume at 25.00";
 
             Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
@@ -81,7 +83,7 @@ public class BuildingPurchaseTest {
         }
 
         @Test
-        public void a_multiple_items_purchase_with_a_10_percent_tax_should_be_built_if_product_is_base_taxed() {
+        public void a_multiple_units_purchase_with_a_10_percent_tax_should_be_built_if_product_is_base_taxed() {
             input = "3 bottle of perfume at 21.00";
 
             Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
@@ -96,11 +98,6 @@ public class BuildingPurchaseTest {
             Purchase purchase = purchaseBuilder.buildPurchasesFromInput(input).get(0);
 
             assertEquals(2.00, purchase.getTaxValue().doubleValue());
-        }
-
-
-        private static Purchase buildPurchaseWithoutTaxes(int quantity, String productName, double price) {
-            return new Purchase(quantity, productName, new BigDecimal(price), new BigDecimal(0.00));
         }
 
     }
@@ -123,7 +120,6 @@ public class BuildingPurchaseTest {
 
             assertEquals("music CD", purchase.getProductName());
         }
-
     }
 
 }
