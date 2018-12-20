@@ -79,14 +79,13 @@ public class PrintingReceiptForSinglePurchaseTest {
         }
 
         @Test
-        @Ignore
         public void one_product_row_with_imported_label_preceding_product_name_if_product_is_imported() {
             expected =
                     "3 imported box of chocolates: 35.55\n" +
                     "Sales Taxes: 1.80\n" +
                     "Total: 35.55";
 
-            receipt.add(new Purchase(3, "box of imported chocolates", new BigDecimal(35.55), new BigDecimal(1.80)));
+            receipt.add(new Purchase(3, "box of imported chocolates", new BigDecimal(11.25), new BigDecimal(1.80)));
 
             assertEquals(expected, receipt.print());
         }

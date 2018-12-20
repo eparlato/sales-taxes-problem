@@ -45,10 +45,23 @@ public class Receipt {
     private void addPurchaseRow() {
 
         for (Purchase purchase : purchases) {
+            String productName;
+
+
             if (purchase != null && !purchase.isEmpty()) {
+                productName = purchase.getProductName();
+
+                // TODO: refactor
+                if (purchase.isProductImported()) {
+                    String [] splitProductName = productName.split("imported");
+
+                    productName = splitProductName[0] + splitProductName[1].trim();
+                    productName = "imported " + productName;
+                }
+
                 receiptAsString.append(String.format("%d %s: %.2f\n",
                         purchase.getQuantity(),
-                        purchase.getProductName(),
+                        productName,
                         purchase.getTotal()));
             }
         }
